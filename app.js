@@ -268,41 +268,46 @@ let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako me
   currentDate = new Date();
   ms = this.date - currentDate;
 
-  minutes = ms / (1000 * 60);
+  if (ms < 0) {
+    return "Úkol již měl být splněn!";
+    
+  } else {
+    minutes = ms / (1000 * 60);
 
-  if (minutes > 59) {
-    hours = minutes / 60;
-    minutes = minutes % 60;
+    if (minutes > 59) {
+      hours = minutes / 60;
+      minutes = minutes % 60;
+    }
+
+    if (hours > 23) {
+      days = hours / 24;
+      hours = hours % 24;
+    }
+
+    if (days > 29) {
+      months = days / 30;
+      days = days % 30;
+    }
+
+    if (days > 6) {
+      weeks = days / 7;
+      days = days % 7;
+    }
+
+    let dateField = [months, weeks, days, hours, minutes];
+
+    dateField[0] = Math.floor(dateField[0]) + "m ";
+    dateField[1] = Math.floor(dateField[1]) + "t ";
+    dateField[2] = Math.floor(dateField[2]) + "d ";
+    dateField[3] = Math.floor(dateField[3]) + "h ";
+    dateField[4] = Math.floor(dateField[4]) + "m";
+
+    filteredDateField = dateField.filter(function(str) {
+      return(str.substring(0,3) !== "NaN" && str.substring(0,1) !== "0");
+    });
+
+    return filteredDateField.join("");
   }
-
-  if (hours > 23) {
-    days = hours / 24;
-    hours = hours % 24;
-  }
-
-  if (days > 29) {
-    months = days / 30;
-    days = days % 30;
-  }
-
-  if (days > 6) {
-    weeks = days / 7;
-    days = days % 7;
-  }
-
-  let dateField = [months, weeks, days, hours, minutes];
-
-  dateField[0] = Math.floor(dateField[0]) + "m ";
-  dateField[1] = Math.floor(dateField[1]) + "t ";
-  dateField[2] = Math.floor(dateField[2]) + "d ";
-  dateField[3] = Math.floor(dateField[3]) + "h ";
-  dateField[4] = Math.floor(dateField[4]) + "m";
-
-  filteredDateField = dateField.filter(function(str) {
-    return(str.substring(0,3) !== "NaN" && str.substring(0,1) !== "0");
-  });
-
-  return filteredDateField.join("");
 };
 
 function Task(text, priority, date, done){
