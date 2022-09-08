@@ -322,7 +322,7 @@ function tasksAssFnc(){
 
 // Vložení úkolu do DOM
 function listTask(task, i) {
-  const template = document.getElementsByClassName("template")[0].getElementsByClassName("task")[0];
+  const template = document.querySelector(".template > .task");
   let newTaskDiv = template.cloneNode(true),
       textElement = newTaskDiv.getElementsByClassName("text")[0],
       priorityElement = newTaskDiv.getElementsByClassName("priority")[0],
