@@ -359,8 +359,9 @@ function listTask(task, i) {
   }
 
   if (task.timeLeft() === false) {
-    timeElement.textContent = "Úkol již měl být splněn!";
-    
+    let timeElementParent = documentnewTaskDiv.getElementsByClassName("time")[0];
+    timeElementParent.textContent = "<b>Úkol již měl být splněn!</b>";
+
   } else {
     timeElement.textContent = task.timeLeft();
   }
