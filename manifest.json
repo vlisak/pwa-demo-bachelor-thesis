@@ -1,6 +1,6 @@
 {
-    "name": "Úkolníček",
-    "short_name" : "Úkolníček",
+    "name": "PWA Demo pro bakalářskou práci (vlisak)",
+    "short_name" : "PWA demos",
     "start_url": ".",
     "display": "standalone",
     "icons": [
