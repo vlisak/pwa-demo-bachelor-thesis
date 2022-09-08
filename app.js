@@ -360,6 +360,7 @@ function listTask(task, i) {
 
   if (task.timeLeft() === false) {
     let timeElementParent = newTaskDiv.getElementsByClassName("time")[0];
+    timeElementParent.innerHTML = "";
     let outOfTimeText = document.createTextNode("Úkol již měl být splněn!");
     let outOfTimeEl = document.createElement("span");
 
