@@ -268,7 +268,7 @@ let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako me
   currentDate = new Date();
   ms = this.date - currentDate;
 
-  if (ms =< 0) {
+  if (ms < 1) {
     return false;
 
   } else {
