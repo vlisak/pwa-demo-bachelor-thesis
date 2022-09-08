@@ -1,0 +1,13 @@
+{
+    "name": "Úkolníček",
+    "short_name" : "Úkolníček",
+    "start_url": ".",
+    "display": "standalone",
+    "icons": [
+        {
+        "src": "icon_145.png",
+        "sizes": "145x145",
+        "type": "image/png"
+        }
+    ]
+}

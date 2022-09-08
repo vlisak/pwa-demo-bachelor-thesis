@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="cs" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="145x145" href="icon_145.png">
+    <link rel="manifest" href="manifest.json">
+    <title>Úkoly</title>
+    <script type="text/javascript"> // Zabrání problikávání themu
+    let themeStored = localStorage.getItem("theme");
+    const root = document.querySelector(':root');
+    if(themeStored === "true"){
+      localStorage.setItem("theme", true);
+      root.style.setProperty("--background","#000");
+      root.style.setProperty("--color","#fff");
+    } else if(themeStored === "false"){
+      localStorage.setItem("theme", false);
+      root.style.setProperty("--background","#fff");
+      root.style.setProperty("--color","#000");
+    } else if(themeStored === null){
+      const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (prefersDarkScheme.matches)
+      {
+        localStorage.setItem("theme", true);
+      } else {
+        localStorage.setItem("theme", false);
+      }
+    }
+    root.style.setProperty("--trans-left", localStorage.getItem("transLeftCol"));
+    root.style.setProperty("--trans-right", localStorage.getItem("transRightCol"));
+    </script>
+  </head>
+  <body>
+    <div class="main-menu">
+      <div class="hamburger">
+        <p style="padding-left: 6px">MENU</p>
+        <div class="line 1"></div>
+        <div class="line 2"></div>
+        <div class="line 3"></div>
+      </div>
+      <div class="options">
+        <div class="item">
+          <p onclick="selectPage('tasks')">Úkoly</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADkAAAAsCAYAAADfAxCtAAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMISURBVHgB7ZrdjdpAFIWvvcCzO1iXQCqI6QAqCDzyp10qgK3AIEC8IMFWwKaCkAqWdOASeEA88JtziY28ZmwPUbQeR/4ky8ZcW3N2dubeM4NGf8FwOOxpmtbFZb/VanVIcbR7gmezmbHZbPoQ+O36Ak172+12tU6nsyZFyckGssDtdvsDoor+++fzuVwoFPiyQooiJXIymZgsEILMkJBVMP50OtmINyhhHh4eaheR3Kjj8TjDpYGblXq97nhBboNDBaJne81m88V/z32XRQqAtnd1TwT9aVQRDXwfj8eXf0k+8+cwgbquV4MCVYPbrgt6ycBnFjrDmcUbggfXEGg1Go1XSgE6GuyIvsD9KokFOofDoQSBPykl6Pv9vsJpQCbYE4h0sYoJjfv+M3GueXI0Gtk4PUcEr/gPAoEOxWDbtoG08oRLk5LFQQ4ffCgGMA676K2eIHjpClQ24UdxU/EIhM5RutUoxQjLOtSmZa5NccyRIgaUkZFuuFKilHCX1fLAmJ2z3eIxiym6o/qse7efdN2I326tgkW9auiyga7deg8IZIpsq0hhpP1klN0igZ9kuxUR/ylgODlSfpLtFgQuIvzkczCXen4S31HCmKF+kosBjsDZYrslEujararqxQK3PSfyk+iBBXrwjddvQh5csxtpt9squY1QovxkmEC2W18k7JYy6Ci+S2i4lMP3+UknJlRNPxlhszzYT5ZkEj/7SUxgZRxfKUEwFFfolFdZPzmHQOUrmzBu5nisEPDqgD+5p2IrIIooP/nEaz+Zn8zIyPjXhE08llfqcSWP8m1JKSaYJ4sQx+nD+hAEobx7lZa9jyD+iqcYtsHjwa5DRqiSftJlQRECGZRJfZRs3+MqH8X8pH1Z/vCPwRiMfD6faD16L7zbLb3G4yPxLfJ7uYjM5XKO9AO6Lh2rCheR7prOMi6Y/aTk5qtSfvI68cBK1dCj/BMWUxTpGWaSAO96waz2C8cjJQgmnfWNn8TMaWJiYU9peWJ5PYdXytHwgcwGbKqYTqePfNB/wG+AcgVeobDa0QAAAABJRU5ErkJggg==">
+        </div>
+        <div class="item">
+          <p onclick="selectPage('settings')">Nastavení</p>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKwSURBVHgBvVdLctpAEG0pQLEkJwg+QcgN8C7Fxs4JQqrY8KtYJwBOIFz8NlRBThCv2CKfAG4Q5QTBVSzCP6+VEZlgazRju3gbjTQ93W96pj+yyACDwSC72+1mGGaemrcsy8fjU7VanZMmbDLAfr93o4wzDodDFo+vZAAjAkAuTgAk82QAbQLsfrFDJXAM2eFw+I40Yckvo9Eos1wuc4lEwi+Xy75sHDtrgECRNAASd7ZtO6c6ttttrl6v30US6PV6MxgJ3TyHEg+XDvoso3OV0Ia+B6y/on/H59VqtctHBGC8COERnQcOSLSPBISLpzpn/EpYbDabC8dxFsElFOebpfMhk0wmGzywRHL5QebwROIJ4z9PhsD6DwkYNz33NtzXYvfJH13XzYpdFXUVgbhrdbvdX6TIbjIQFcVKpfJNJWN6mW24oa0jCLlmnHEG6sCYZUkDLGdjQQtjRyWIHflCTgvr9foWj4VKhr3JOoMo4JiEkUuKZuqRAcT9GCtErkNv2hKjhYKAdnmV1vhRc+l0+qhPiwC8o3SnKVar1dtHBLhQKNbElmGTNUh8mf8IcOjAZd8pGkXEuVaoSshHTcDWFOF/w+M3nU6niadLaqRRon9PJpN70oDQeR0j9rFQKDxwHmiQBnAPmv1+/3OcnPCmlk6gwZlwSgZ5HMrHuLAtudlgiGamadg7eBYY57C7GZnjxcWIS3LQD8ALfAdu6LwYIwF+sQUTTrOvGusqcGoXNv+GoUid2rn+peAiBJt+MJYnTi7knLtbsOX4f+7xhJU2TyIx8e7RGV8cyZyuAIkrztWlUuln+I2bjVQq5WJxXGyHGIumxZd1oGF5j+/3cjNjaSokk9ZNNJy+jqz2nxHHPbsvTo5ldI0bEQiE8aOiIWNUuk1/Tm9VXuCyjW7IIQP8AbNTVZ5S3ezyAAAAAElFTkSuQmCC">
+        </div>
+      </div>
+    </div>
+    <div class="page" id="goals">
+      <section class="entry">
+        <form autocomplete="off">
+          <input type="text" id="goalText">
+          <div class="second-item">
+            <button type="button" id="dateOfCompletionButton">Odhad úspěchu</button>
+            <button>Přidat</button>
+          </div>
+          <div id="completion-date_date" style="display:none; margin: 1rem 0">
+            <h2>Dokončit v:</h2>
+            <div>
+              <input name="set-datetime-inp" type="datetime-local">
+            </div>
+          </div>
+        </form>
+    </div>
+    <div class="page" id="tasks">
+      <section class="entry">
+        <form autocomplete="off">
+          <input type="text" id="taskText">
+          <div class="second-item">
+            <button type="button" id="fulfillSetButton">Čas dokončení</button>
+            <div class="dropdown-wrap">
+              <button class="btn dropdown" type="button" id="dropdownToggle">Priorita</button>
+              <ul class="dropdown-menu" id="taskPriority" style="background: linear-gradient(0deg, rgba(132,250,176,1) 0%, rgba(132,250,176,1) 33%, rgba(255,255,255,1) 33%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 66%, rgba(255,160,160,1) 66%, rgba(255,160,160,1) 100%); color: #000">
+                <li>Vysoká</li>
+                <li>Střední</li>
+                <li>Nízká</li>
+              </ul>
+            </div>
+            <button>Přidat</button>
+          </div>
+        </form>
+        <form class="completion-date">
+          <div id="completion-date_time">
+            <h2>Dokončit za:</h2>
+            <div>
+              <button onclick="increaseValue(months)">+</button>
+              <input id="months" type="number" value="0" min="0" max="12">
+              <button onclick="decreaseValue(months)">-</button>
+              <p>měsíců</p>
+            </div>
+            <div>
+              <button onclick="increaseValue(weeks)">+</button>
+              <input id="weeks" type="number" value="0" min="0" max="5">
+              <button onclick="decreaseValue(weeks)">-</button>
+              <p>týdnů</p>
+            </div>
+            <div>
+              <button onclick="increaseValue(days)">+</button>
+              <input id="days" type="number" value="0" min="0" max="31">
+              <button onclick="decreaseValue(days)">-</button>
+              <p>dní</p>
+            </div>
+            <div>
+              <button onclick="increaseValue(hours)">+</button>
+              <input id="hours" type="number" value="0" min="0" max="23">
+              <button onclick="decreaseValue(hours)">-</button>
+              <p>hodin</p>
+            </div>
+            <div>
+              <button onclick="increaseValue(minutes)">+</button>
+              <input id="minutes" type="number" value="0" min="0" max="59">
+              <button onclick="decreaseValue(minutes)">-</button>
+              <p>minut</p>
+            </div>
+          </div>
+          <div id="completion-date_date" style="display:none; margin: 1rem 0">
+            <h2>Dokončit v:</h2>
+            <div>
+              <input id="set-datetime-inp" type="datetime-local">
+            </div>
+          </div>
+        <button id="setDateInp">Datum</button><button>Nastavit</button>
+      </form>
+      </section>
+      <section class="list"></section>
+      <div class="template">
+        <div data-index="" class="task">
+          <div class="priority"></div>
+          <div class="text-items">
+            <p class="text"></p>
+            <p class="time">Zbývá vám <span></span> na dokončení</p>
+          </div>
+          <div class="button-list">
+            <button type="button" class="fulfill">Dokončit</button>
+            <button type="button" class="delete">Smazat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page" id="settings">
+        <div class="item">
+          <p>Tmavý režim</p>
+          <button type="button" name="theme"></button>
+        </div>
+        <div class="item">
+          <p>Barevný přechod</p>
+          <div class="color-inputs">
+            <input type="color" name="trans-left" style="background: var(--trans-left)" value=""></input>
+            <input type="color" name="trans-right" style="background: var(--trans-right)" value=""></input>
+          </div>
+        </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="app.js"></script>
+</html>
