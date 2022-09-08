@@ -269,8 +269,8 @@ let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako me
   ms = this.date - currentDate;
 
   if (ms < 0) {
-    return "Úkol již měl být splněn!";
-    
+    return false;
+
   } else {
     minutes = ms / (1000 * 60);
 
@@ -358,7 +358,12 @@ function listTask(task, i) {
   fulfillAttr.textContent = "Vrátit"
   }
 
-  timeElement.textContent = task.timeLeft();
+  if (task.timeLeft() === false) {
+    timeElement.textContent = "Úkol již měl být splněn!";
+    
+  } else {
+    timeElement.textContent = task.timeLeft();
+  }
 
   tasksList.appendChild(newTaskDiv);
 }
