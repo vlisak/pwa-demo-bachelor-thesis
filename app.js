@@ -90,9 +90,7 @@ priorityInp.forEach(function(link) {
 const html = document.querySelector("html");
 
 html.addEventListener("click", function(e){
-  if(e.target !== dropdownButton){
-    dropdownMenu.classList.remove("show");
-  }
+  dropdownMenu.classList.remove("show");
 });
 
 // Dark/Light theme settings
