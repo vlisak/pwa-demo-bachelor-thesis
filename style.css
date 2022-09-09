@@ -682,3 +682,9 @@ border-radius: 6px;
   height: 2rem;
   width: 2rem;
 }
+
+/* Návyky */
+
+#habits .second-item > * {
+  box-shadow: none;
+}
