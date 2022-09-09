@@ -1,7 +1,7 @@
 const appVersion = "1.0.1";
 
 var appScript = document.querySelector('script[src="app.js"]');
-appScript.src.replace("app.js", "app.js?v=" + appVersion);
+appScript.src = "app.js?v=" + appVersion;
 
 
 window.onload = function (){
