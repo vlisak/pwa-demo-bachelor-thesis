@@ -1,3 +1,9 @@
+const appVersion = "1.0.1";
+
+var appScript = document.querySelector('script[src="app.js"]');
+appScript.src.replace("app.js", "app.js?v=" + appVersion);
+
+
 window.onload = function (){
   const page = localStorage.getItem("page");
   if(page === null){
