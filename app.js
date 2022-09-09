@@ -89,8 +89,10 @@ priorityInp.forEach(function(link) {
 
 const html = document.querySelector("html");
 
-html.addEventListener("click", function() {
-  dropdownButtons.forEach(button => {button.classList.remove("show")});
+html.addEventListener("click", function(e) {
+  if(!dropdownButtons.includes(e.target)){
+    dropdownButtons.forEach(button => {button.classList.remove("show")});
+  }
 });
 
 // Dark/Light theme settings
