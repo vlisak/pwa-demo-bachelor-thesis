@@ -56,12 +56,13 @@ if (window.innerHeight > 680){
 
 // Priority settings
 
-const dropdownButton = document.getElementById("dropdownToggle"),
-      fulfillSetButton = document.getElementById("fulfillSetButton"),
-      dropdownMenu = document.getElementsByClassName('dropdown-menu')[0];
+const dropdownButtons = document.querySelectorAll(".btn.dropdown"),
+      fulfillSetButton = document.getElementById("fulfillSetButton");
 
-dropdownButton.addEventListener("click", function () {
-    dropdownMenu.classList.toggle("show");
+dropdownButtons.forEach(button => {
+  button.addEventListener("click", function() {
+    button.nextElementSibling.classList.toggle("show");
+  });
 });
 
 const priorityInpSet = document.getElementById("taskPriority"),
