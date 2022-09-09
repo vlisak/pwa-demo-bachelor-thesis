@@ -90,7 +90,7 @@ priorityInp.forEach(function(link) {
 const html = document.querySelector("html");
 
 html.addEventListener("click", function(e) {
-  if(dropdownButtons.forEach(button => {
+  if(!dropdownButtons.forEach(button => {
     if(button == e.target){return true}
   })){
     dropdownButtons.forEach(button => {button.classList.remove("show")});
