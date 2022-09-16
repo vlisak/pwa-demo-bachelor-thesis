@@ -65,24 +65,25 @@ dropdownButtons.forEach(button => {
   });
 });
 
-const priorityInpSet = document.getElementById("taskPriority"),
-      priorityInp = priorityInpSet.querySelectorAll("li"),
-      btnDropdown = document.getElementsByClassName("btn dropdown")[0];
+const taskPriorityInpSet = document.getElementById("taskPriority"),
+      taskPriorityInp = taskPriorityInpSet.querySelectorAll("li"),
+      taskBtnDropdown = document.querySelector("#tasks .btn.dropdown");
 
-let taskPriority = 1;
+let taskPriority = 1
+    habitPriority = 1;
 
-priorityInp.forEach(function(link) {
+taskPriorityInp.forEach(function(link) {
   link.addEventListener("click", function() {
-    priorityInpSet.classList.remove("show");
-    if( Array.prototype.indexOf.call(priorityInpSet.children, link) == 0){
+    taskPriorityInpSet.classList.remove("show");
+    if( Array.prototype.indexOf.call(taskPriorityInpSet.children, link) == 0){
       taskPriority = 2;
-      btnDropdown.className = "btn dropdown high";
-    } else if(Array.prototype.indexOf.call(priorityInpSet.children, link) == 1) {
+      taskBtnDropdown.className = "btn dropdown high";
+    } else if(Array.prototype.indexOf.call(taskPriorityInpSet.children, link) == 1) {
       taskPriority = 1;
-      btnDropdown.className = "btn dropdown";
+      taskBtnDropdown.className = "btn dropdown";
     } else {
       taskPriority = 0;
-      btnDropdown.className = "btn dropdown low"
+      taskBtnDropdown.className = "btn dropdown low"
     }
   });
 });
