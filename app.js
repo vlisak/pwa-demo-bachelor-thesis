@@ -170,6 +170,8 @@ document.getElementsByClassName("completion-date")[0].lastElementChild.addEventL
 )
 
 // Closing the date settings by clicking outside
+const html = document.querySelector("html");
+
 html.addEventListener('click', function(e){
     if( document.getElementsByClassName("completion-date")[0].contains(e.target) || fulfillSetButton.contains(e.target)){
   } else{
