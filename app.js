@@ -69,7 +69,7 @@ const taskPriorityInpSet = document.getElementById("taskPriority"),
       taskPriorityInp = taskPriorityInpSet.querySelectorAll("li"),
       taskBtnDropdown = document.querySelector("#tasks .btn.dropdown");
 
-let taskPriority = 1
+let taskPriority = 1,
     habitPriority = 1;
 
 taskPriorityInp.forEach(function(link) {
