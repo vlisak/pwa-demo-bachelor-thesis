@@ -67,7 +67,11 @@ dropdownButtons.forEach(button => {
 
 const taskPriorityInpSet = document.getElementById("taskPriority"),
       taskPriorityInp = taskPriorityInpSet.querySelectorAll("li"),
-      taskBtnDropdown = document.querySelector("#tasks .btn.dropdown");
+      taskBtnDropdown = document.querySelector("#tasks .btn.dropdown"),
+
+      habitPriorityInpSet = document.getElementById("habitPriority"),
+      habitPriorityInp = habitPriorityInpSet.querySelectorAll("li"),
+      habitBtnDropdown = document.querySelector("#habits .btn.dropdown");
 
 let taskPriority = 1,
     habitPriority = 1;
@@ -87,6 +91,23 @@ taskPriorityInp.forEach(function(link) {
     }
   });
 });
+
+habitPriorityInp.forEach(function(link) {
+  link.addEventListener("click", function() {
+    habitPriorityInpSet.classList.remove("show");
+    if( Array.prototype.indexOf.call(habitPriorityInpSet.children, link) == 0){
+      habitPriority = 2;
+      habitBtnDropdown.className = "btn dropdown high";
+    } else if(Array.prototype.indexOf.call(habitPriorityInpSet.children, link) == 1) {
+      habitPriority = 1;
+      habitBtnDropdown.className = "btn dropdown";
+    } else {
+      habitPriority = 0;
+      habitBtnDropdown.className = "btn dropdown low"
+    }
+  });
+});
+
 
 // Dark/Light theme settings
 
