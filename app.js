@@ -280,9 +280,14 @@ colorInputs.forEach((input, i) => {
 
 
 // "backend"
-let tasks = [];
+let tasks = [],
+    habits = [];
+
 const taskForm = document.getElementById("tasks").getElementsByTagName("form")[0],
-      tasksList = document.getElementById("tasks").getElementsByClassName("list")[0];
+      tasksList = document.getElementById("tasks").getElementsByClassName("list")[0],
+      
+      habitForm = document.getElementById("habits").getElementsByClassName("form")[0],
+      habitsList = document.getElementById("habits").getElementsByClassName("list")[0];
 
 // Třída pro úkol
 let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako metoda (Kvůli LS)
