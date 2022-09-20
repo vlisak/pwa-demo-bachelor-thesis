@@ -279,7 +279,7 @@ colorInputs.forEach((input, i) => {
 });
 
 
-// "backend"
+// Práce s daty, vložení do DOM a lokálního úložiště
 let tasks = [],
     habits = [];
 
