@@ -339,7 +339,10 @@ const timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako 
 };
 
 const successRate = function () {
-  let 
+  let startDate = this.startDate,
+      numberOfCompletions = this.numberOfCompletions,
+
+      currentDate = new Date(new Date().toDateString());
 }
 
 function Task(text, priority, date, done){
