@@ -347,10 +347,18 @@ function Task(text, priority, date, done){
   };
 }
 
-function tasksAssFnc(){
-  tasks.forEach(task => {
-  task.timeLeft = timeLeftFnc;
-});
+function tasksAssFnc() {
+    tasks.forEach(task => {
+    task.timeLeft = timeLeftFnc;
+  });
+}
+
+function Habit(text, priority, completionSet){
+  return {
+    text,
+    priority,
+    completionSet
+  };
 }
 
 // Vložení úkolu do DOM
