@@ -290,7 +290,7 @@ const taskForm = document.getElementById("tasks").getElementsByTagName("form")[0
       habitsList = document.getElementById("habits").getElementsByClassName("list")[0];
 
 // Třída pro úkol
-let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako metoda (Kvůli LS)
+const timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako metoda (Kvůli LS)
   let currentDate, ms, minutes, hours, days, weeks, months;
 
   currentDate = new Date();
@@ -338,6 +338,10 @@ let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako me
   }
 };
 
+const successRate = function () {
+  let 
+}
+
 function Task(text, priority, date, done){
   return {
     text,
@@ -353,12 +357,13 @@ function tasksAssFnc() {
   });
 }
 
-function Habit(text, priority, intensity, completionSet){
+function Habit(text, priority, intensity, startDate, numberOfCompletions){
   return {
     text,
     priority,
     intensity,
-    completionSet
+    startDate,
+    numberOfCompletions
   };
 }
 
