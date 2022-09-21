@@ -353,10 +353,11 @@ function tasksAssFnc() {
   });
 }
 
-function Habit(text, priority, completionSet){
+function Habit(text, priority, intensity, completionSet){
   return {
     text,
     priority,
+    intensity,
     completionSet
   };
 }
