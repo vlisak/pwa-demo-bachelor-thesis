@@ -406,7 +406,7 @@ taskForm.querySelector(".second-item").lastElementChild.onclick = function() {
     textInput.value = "";
     taskPriority = 1;
     dropdownToggle.className = "btn dropdown";
-    notePriorityInpSet.classList.remove("show");
+    document.querySelector("#taskPriority").classList.remove("show");
     saveTasks();
   }
 };
