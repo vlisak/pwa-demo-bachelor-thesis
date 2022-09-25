@@ -560,7 +560,7 @@ function deleteNote(i) {
 
 // Třízení poznámek 
 function sortNotes() {
-  tasks.sort(function (a, b) {
+  notes.sort(function (a, b) {
      return b.priority - a.priority;
   });
 }
