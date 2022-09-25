@@ -373,7 +373,7 @@ border-radius: 6px;
   opacity: 1;
 }
 
-.task {
+.task, .note {
 
   display: flex;
   flex-wrap: wrap;
@@ -382,7 +382,7 @@ border-radius: 6px;
   transition: transform 0.5s, box-shadow 0.3s;
 }
 
-.task > * {
+.task > *, .note > * {
 
   margin: 1rem;
 }
