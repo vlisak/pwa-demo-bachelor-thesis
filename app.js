@@ -432,6 +432,7 @@ taskForm.querySelector(".second-item").lastElementChild.onclick = function() {
 function updateList() {
   tasksAssFnc();
   sortTasks();
+  sortNotes();
   tasksList.textContent = "";  // Vyčištění listu před přidáním setřízených úkolů
   notesList.textContent = "";
   tasks.forEach(function(task){
@@ -554,5 +555,12 @@ function deleteNote(i) {
   div.addEventListener("transitionend",function(){
     notes.splice(i, 1);
     updateList();
+  });
+}
+
+// Třízení poznámek 
+function sortNotes() {
+  tasks.sort(function (a, b) {
+     return b.priority - a.priority;
   });
 }
