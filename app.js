@@ -546,3 +546,14 @@ function listNote(note, i) {
 
   notesList.appendChild(newNoteDiv);
 }
+
+// Odstranění poznámky
+
+function deleteTask(i) {
+  let div = notesList.querySelector("[data-index='"+ i +"']");
+  div.classList.add("slideaway");
+  div.addEventListener("transitionend",function(){
+    notes.splice(i, 1);
+    updateList();
+  });
+}
