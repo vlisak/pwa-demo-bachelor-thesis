@@ -439,7 +439,7 @@ function updateList() {
   });
   notes.forEach(function(note){
     listNote(notes, notes.indexOf(note));
-  })
+  });
 }
 
 // Toggle na dokončení úkolu
