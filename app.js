@@ -556,6 +556,7 @@ function deleteNote(i) {
   div.classList.add("slideaway");
   div.addEventListener("transitionend",function(){
     notes.splice(i, 1);
+    saveNotes();
     updateList();
   });
 }
