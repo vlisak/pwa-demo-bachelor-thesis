@@ -548,7 +548,6 @@ function listNote(note, i) {
 }
 
 // Odstranění poznámky
-
 function deleteNote(i) {
   let div = notesList.querySelector("[data-index='"+ i +"']");
   div.classList.add("slideaway");
