@@ -449,7 +449,8 @@ border-radius: 6px;
 
 @media screen and (max-width: 702px) {
 
-  .task > .text-items {
+  .task > .text-items,
+  .note > p {
 
     text-align: center;
   }
