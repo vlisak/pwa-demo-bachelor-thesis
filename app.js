@@ -490,3 +490,12 @@ function saveTasks() {
   let tasksSerialized = JSON.stringify(tasks);
   localStorage.setItem("tasks", tasksSerialized);
 }
+
+// Poznámky
+
+function Note(text, priority){
+  return {
+    text,
+    priority
+  };
+}
