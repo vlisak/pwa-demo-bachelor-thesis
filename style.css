@@ -422,7 +422,7 @@ border-radius: 6px;
   background-color: green;
 }
 
-.task .text {
+.task .text, .note .text {
   width: 366px;
   align-self: center;
 }
