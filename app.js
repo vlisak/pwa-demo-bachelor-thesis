@@ -414,7 +414,7 @@ function sortTasks() {
 taskForm.querySelector(".second-item").lastElementChild.onclick = function() {
   let textInput = document.getElementById("taskText");
   if (textInput.value === "") {
-    alert("Zadejte úkol.");
+    alert("Zadejte text úkolu.");
   } else {
     updateDate();
     let task = new Task(textInput.value, taskPriority, completionDate._d, false);
@@ -422,7 +422,7 @@ taskForm.querySelector(".second-item").lastElementChild.onclick = function() {
     updateList();
     textInput.value = "";
     taskPriority = 1;
-    dropdownToggle.className = "btn dropdown";
+    document.querySelector("#tasks .btn.dropdown").className = "btn dropdown";
     document.querySelector("#taskPriority").classList.remove("show");
     saveTasks();
   }
@@ -503,3 +503,18 @@ function Note(text, priority){
     priority
   };
 }
+
+noteForm.querySelector(".second-item").lastElementChild.onclick = function() {
+  let textInput = document.getElementById("noteText");
+  if (textInput.value === "") {
+    alert("Zadejte text poznámky.");
+  } else {
+    let note = new Note(textInput.value, notePriority);
+    notes.push(note);
+    updateList();
+    textInput.value = "";
+    notePriority = 1;
+    document.querySelector("#notes .btn.dropdown").className = "btn dropdown";
+    document.querySelector("#notePriority").classList.remove("show");
+  }
+};
