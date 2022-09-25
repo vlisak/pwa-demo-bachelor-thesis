@@ -438,7 +438,7 @@ function updateList() {
     listTask(task, tasks.indexOf(task));
   });
   notes.forEach(function(note){
-    listNote(notes, notes.indexOf(note));
+    listNote(note, notes.indexOf(note));
   });
 }
 
