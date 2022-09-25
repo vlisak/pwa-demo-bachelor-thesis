@@ -522,6 +522,7 @@ noteForm.querySelector(".second-item").lastElementChild.onclick = function() {
     notePriority = 1;
     document.querySelector("#notes .btn.dropdown").className = "btn dropdown";
     document.querySelector("#notePriority").classList.remove("show");
+    saveNotes();
   }
 };
 
