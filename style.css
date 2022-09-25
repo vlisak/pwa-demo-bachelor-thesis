@@ -405,13 +405,13 @@ border-radius: 6px;
 
 .priority.high {
 
-  /*background-color: #ffa0a0;*/
+  background-color: #ffa0a0;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 .priority.low {
 
-  /*background-color: #84fab0;*/
+  background-color: #84fab0;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 
