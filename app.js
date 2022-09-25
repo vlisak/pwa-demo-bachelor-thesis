@@ -1,3 +1,9 @@
+const appVersion = "1.0.2";
+
+var appScript = document.querySelector('script[src="app.js"]');
+appScript.src = "app.js?v=" + appVersion;
+
+
 window.onload = function (){
   const page = localStorage.getItem("page");
   if(page === null){
@@ -6,6 +12,7 @@ window.onload = function (){
     selectPage(page);
   }
   loadTasks();
+  loadNotes();
   updateList();
 }
 
@@ -50,42 +57,56 @@ if (window.innerHeight > 680){
 
 // Priority settings
 
-const dropdownButton = document.getElementById("dropdownToggle"),
-      fulfillSetButton = document.getElementById("fulfillSetButton"),
-      dropdownMenu = document.getElementsByClassName('dropdown-menu')[0];
+const dropdownButtons = document.querySelectorAll(".btn.dropdown"),
+      fulfillSetButton = document.getElementById("fulfillSetButton");
 
-dropdownButton.addEventListener("click", function () {
-    dropdownMenu.classList.toggle("show");
+dropdownButtons.forEach(button => {
+  button.addEventListener("click", function() {
+    button.nextElementSibling.classList.toggle("show");
+  });
 });
 
-const priorityInpSet = document.getElementById("taskPriority"),
-      priorityInp = priorityInpSet.querySelectorAll("li"),
-      btnDropdown = document.getElementsByClassName("btn dropdown")[0];
+const taskPriorityInpSet = document.getElementById("taskPriority"),
+      taskPriorityInp = taskPriorityInpSet.querySelectorAll("li"),
+      taskBtnDropdown = document.querySelector("#tasks .btn.dropdown"),
 
-let taskPriority = 1;
+      notePriorityInpSet = document.getElementById("notePriority"),
+      notePriorityInp = notePriorityInpSet.querySelectorAll("li"),
+      noteBtnDropdown = document.querySelector("#notes .btn.dropdown");
 
-priorityInp.forEach(function(link) {
+let taskPriority = 1,
+    notePriority = 1;
+
+taskPriorityInp.forEach(function(link) {
   link.addEventListener("click", function() {
-    priorityInpSet.classList.remove("show");
-    if( Array.prototype.indexOf.call(priorityInpSet.children, link) == 0){
+    taskPriorityInpSet.classList.remove("show");
+    if( Array.prototype.indexOf.call(taskPriorityInpSet.children, link) == 0){
       taskPriority = 2;
-      btnDropdown.className = "btn dropdown high";
-    } else if(Array.prototype.indexOf.call(priorityInpSet.children, link) == 1) {
+      taskBtnDropdown.className = "btn dropdown high";
+    } else if(Array.prototype.indexOf.call(taskPriorityInpSet.children, link) == 1) {
       taskPriority = 1;
-      btnDropdown.className = "btn dropdown";
+      taskBtnDropdown.className = "btn dropdown";
     } else {
       taskPriority = 0;
-      btnDropdown.className = "btn dropdown low"
+      taskBtnDropdown.className = "btn dropdown low"
     }
   });
 });
 
-const html = document.querySelector("html");
-
-html.addEventListener("click", function(e){
-  if(e.target !== dropdownButton){
-    dropdownMenu.classList.remove("show");
-  }
+notePriorityInp.forEach(function(link) {
+  link.addEventListener("click", function() {
+    notePriorityInpSet.classList.remove("show");
+    if( Array.prototype.indexOf.call(notePriorityInpSet.children, link) == 0){
+      notePriority = 2;
+      noteBtnDropdown.className = "btn dropdown high";
+    } else if(Array.prototype.indexOf.call(notePriorityInpSet.children, link) == 1) {
+      notePriority = 1;
+      noteBtnDropdown.className = "btn dropdown";
+    } else {
+      notePriority = 0;
+      noteBtnDropdown.className = "btn dropdown low"
+    }
+  });
 });
 
 // Dark/Light theme settings
@@ -170,6 +191,8 @@ document.getElementsByClassName("completion-date")[0].lastElementChild.addEventL
 )
 
 // Closing the date settings by clicking outside
+const html = document.querySelector("html");
+
 html.addEventListener('click', function(e){
     if( document.getElementsByClassName("completion-date")[0].contains(e.target) || fulfillSetButton.contains(e.target)){
   } else{
@@ -268,41 +291,46 @@ let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako me
   currentDate = new Date();
   ms = this.date - currentDate;
 
-  minutes = ms / (1000 * 60);
+  if (ms < 60000) {
+    return false;
 
-  if (minutes > 59) {
-    hours = minutes / 60;
-    minutes = minutes % 60;
+  } else {
+    minutes = ms / (1000 * 60);
+
+    if (minutes > 59) {
+      hours = minutes / 60;
+      minutes = minutes % 60;
+    }
+
+    if (hours > 23) {
+      days = hours / 24;
+      hours = hours % 24;
+    }
+
+    if (days > 29) {
+      months = days / 30;
+      days = days % 30;
+    }
+
+    if (days > 6) {
+      weeks = days / 7;
+      days = days % 7;
+    }
+
+    let dateField = [months, weeks, days, hours, minutes];
+
+    dateField[0] = Math.floor(dateField[0]) + "m ";
+    dateField[1] = Math.floor(dateField[1]) + "t ";
+    dateField[2] = Math.floor(dateField[2]) + "d ";
+    dateField[3] = Math.floor(dateField[3]) + "h ";
+    dateField[4] = Math.floor(dateField[4]) + "m";
+
+    filteredDateField = dateField.filter(function(str) {
+      return(str.substring(0,3) !== "NaN" && str.substring(0,1) !== "0");
+    });
+
+    return filteredDateField.join("");
   }
-
-  if (hours > 23) {
-    days = hours / 24;
-    hours = hours % 24;
-  }
-
-  if (days > 29) {
-    months = days / 30;
-    days = days % 30;
-  }
-
-  if (days > 6) {
-    weeks = days / 7;
-    days = days % 7;
-  }
-
-  let dateField = [months, weeks, days, hours, minutes];
-
-  dateField[0] = Math.floor(dateField[0]) + "m ";
-  dateField[1] = Math.floor(dateField[1]) + "t ";
-  dateField[2] = Math.floor(dateField[2]) + "d ";
-  dateField[3] = Math.floor(dateField[3]) + "h ";
-  dateField[4] = Math.floor(dateField[4]) + "m";
-
-  filteredDateField = dateField.filter(function(str) {
-    return(str.substring(0,3) !== "NaN" && str.substring(0,1) !== "0");
-  });
-
-  return filteredDateField.join("");
 };
 
 function Task(text, priority, date, done){
@@ -353,7 +381,19 @@ function listTask(task, i) {
   fulfillAttr.textContent = "Vrátit"
   }
 
-  timeElement.textContent = task.timeLeft();
+  if (task.timeLeft() === false) {
+    let timeElementParent = newTaskDiv.getElementsByClassName("time")[0];
+    timeElementParent.innerHTML = "";
+    let outOfTimeText = document.createTextNode("Úkol již měl být splněn!");
+    let outOfTimeEl = document.createElement("span");
+
+    outOfTimeEl.appendChild(outOfTimeText);
+
+    timeElementParent.appendChild(outOfTimeEl);
+
+  } else {
+    timeElement.textContent = task.timeLeft();
+  }
 
   tasksList.appendChild(newTaskDiv);
 }
@@ -375,7 +415,7 @@ function sortTasks() {
 taskForm.querySelector(".second-item").lastElementChild.onclick = function() {
   let textInput = document.getElementById("taskText");
   if (textInput.value === "") {
-    alert("Zadejte úkol.");
+    alert("Zadejte text úkolu.");
   } else {
     updateDate();
     let task = new Task(textInput.value, taskPriority, completionDate._d, false);
@@ -383,8 +423,8 @@ taskForm.querySelector(".second-item").lastElementChild.onclick = function() {
     updateList();
     textInput.value = "";
     taskPriority = 1;
-    dropdownToggle.className = "btn dropdown";
-    dropdownMenu.classList.remove("show");
+    document.querySelector("#tasks .btn.dropdown").className = "btn dropdown";
+    document.querySelector("#taskPriority").classList.remove("show");
     saveTasks();
   }
 };
@@ -393,9 +433,14 @@ taskForm.querySelector(".second-item").lastElementChild.onclick = function() {
 function updateList() {
   tasksAssFnc();
   sortTasks();
+  sortNotes();
   tasksList.textContent = "";  // Vyčištění listu před přidáním setřízených úkolů
+  notesList.textContent = "";
   tasks.forEach(function(task){
     listTask(task, tasks.indexOf(task));
+  });
+  notes.forEach(function(note){
+    listNote(note, notes.indexOf(note));
   });
 }
 
@@ -450,4 +495,90 @@ function loadTasks() {
 function saveTasks() {
   let tasksSerialized = JSON.stringify(tasks);
   localStorage.setItem("tasks", tasksSerialized);
+}
+
+// Poznámky
+
+let notes = [];
+const noteForm = document.getElementById("notes").getElementsByTagName("form")[0],
+      notesList = document.getElementById("notes").getElementsByClassName("list")[0];
+
+function Note(text, priority){
+  return {
+    text,
+    priority
+  };
+}
+
+noteForm.querySelector(".second-item").lastElementChild.onclick = function() {
+  let textInput = document.getElementById("noteText");
+  if (textInput.value === "") {
+    alert("Zadejte text poznámky.");
+  } else {
+    let note = new Note(textInput.value, notePriority);
+    notes.push(note);
+    updateList();
+    textInput.value = "";
+    notePriority = 1;
+    document.querySelector("#notes .btn.dropdown").className = "btn dropdown";
+    document.querySelector("#notePriority").classList.remove("show");
+    saveNotes();
+  }
+};
+
+// Vložení poznámky do DOM
+function listNote(note, i) {
+  const template = document.querySelector("#notes .template").getElementsByClassName("note")[0];
+  let newNoteDiv = template.cloneNode(true),
+      textElement = newNoteDiv.getElementsByClassName("text")[0],
+      priorityElement = newNoteDiv.getElementsByClassName("priority")[0],
+      deleteAttr = newNoteDiv.getElementsByClassName("delete")[0];
+
+  newNoteDiv.dataset.index = i;
+  textElement.textContent = note.text;
+
+  if (note.priority === 0) {
+    priorityElement.classList.add("low");
+  }if (note.priority === 2) {
+    priorityElement.classList.add("high");
+  }
+
+  let nodeDeleteAtr = document.createAttribute("onclick");
+  nodeDeleteAtr.nodeValue = "deleteNote(" + i + ")";
+  deleteAttr.setAttributeNode(nodeDeleteAtr);
+
+  notesList.appendChild(newNoteDiv);
+}
+
+// Odstranění poznámky
+function deleteNote(i) {
+  let div = notesList.querySelector("[data-index='"+ i +"']");
+  div.classList.add("slideaway");
+  div.addEventListener("transitionend",function(){
+    notes.splice(i, 1);
+    saveNotes();
+    updateList();
+  });
+}
+
+// Třízení poznámek 
+function sortNotes() {
+  notes.sort(function (a, b) {
+     return b.priority - a.priority;
+  });
+}
+
+// Automatické ukládání do Lokálního úložiště
+function loadNotes() {
+  let ls = localStorage.getItem("notes");
+  if (ls.length === 0 || ls === null) {
+    return;
+  }
+  let notesDeserialized = JSON.parse(localStorage.getItem("notes"));
+  notes = notesDeserialized;
+}
+
+function saveNotes() {
+  let notesSerialized = JSON.stringify(notes);
+  localStorage.setItem("notes", notesSerialized);
 }
