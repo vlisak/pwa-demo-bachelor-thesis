@@ -387,7 +387,7 @@ border-radius: 6px;
   margin: 1rem;
 }
 
-.task.slideaway {
+.task.slideaway, .note.slideaway {
   transform: translate(100%);
   box-shadow: 0px 0px;
 }

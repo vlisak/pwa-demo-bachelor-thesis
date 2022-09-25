@@ -433,9 +433,13 @@ function updateList() {
   tasksAssFnc();
   sortTasks();
   tasksList.textContent = "";  // Vyčištění listu před přidáním setřízených úkolů
+  notesList.textContent = "";
   tasks.forEach(function(task){
     listTask(task, tasks.indexOf(task));
   });
+  notes.forEach(function(note){
+    listNote(notes, notes.indexOf(note));
+  })
 }
 
 // Toggle na dokončení úkolu
@@ -518,3 +522,27 @@ noteForm.querySelector(".second-item").lastElementChild.onclick = function() {
     document.querySelector("#notePriority").classList.remove("show");
   }
 };
+
+// Vložení poznámky do DOM
+function listNote(note, i) {
+  const template = document.getElementsByClassName("template")[0].getElementsByClassName("note")[0];
+  let newNoteDiv = template.cloneNode(true),
+      textElement = newNoteDiv.getElementsByClassName("text")[0],
+      priorityElement = newNoteDiv.getElementsByClassName("priority")[0],
+      deleteAttr = newNoteDiv.getElementsByClassName("delete")[0];
+
+  newNoteDiv.dataset.index = i;
+  textElement.textContent = note.text;
+
+  if (note.priority === 0) {
+    priorityElement.classList.add("low");
+  }if (note.priority === 2) {
+    priorityElement.classList.add("high");
+  }
+
+  let nodeDeleteAtr = document.createAttribute("onclick");
+  nodeDeleteAtr.nodeValue = "deleteNote(" + i + ")";
+  deleteAttr.setAttributeNode(nodeDeleteAtr);
+
+  notesList.appendChild(newNoteDiv);
+}
