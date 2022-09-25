@@ -549,7 +549,7 @@ function listNote(note, i) {
 
 // Odstranění poznámky
 
-function deleteTask(i) {
+function deleteNote(i) {
   let div = notesList.querySelector("[data-index='"+ i +"']");
   div.classList.add("slideaway");
   div.addEventListener("transitionend",function(){
