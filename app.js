@@ -493,6 +493,10 @@ function saveTasks() {
 
 // Poznámky
 
+let notes = [];
+const noteForm = document.getElementById("notes").getElementsByTagName("form")[0],
+      notesList = document.getElementById("notes").getElementsByClassName("list")[0];
+
 function Note(text, priority){
   return {
     text,
