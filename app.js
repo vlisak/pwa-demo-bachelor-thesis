@@ -12,6 +12,7 @@ window.onload = function (){
     selectPage(page);
   }
   loadTasks();
+  loadNotes();
   updateList();
 }
 
@@ -563,4 +564,19 @@ function sortNotes() {
   notes.sort(function (a, b) {
      return b.priority - a.priority;
   });
+}
+
+// Automatické ukládání do Lokálního úložiště
+function loadNotes() {
+  let ls = localStorage.getItem("notes");
+  if (ls.length === 0 || ls === null) {
+    return;
+  }
+  let notesDeserialized = JSON.parse(localStorage.getItem("notes"));
+  notes = notesDeserialized;
+}
+
+function saveNotes() {
+  let notesSerialized = JSON.stringify(notes);
+  localStorage.setItem("notes", notesSerialized);
 }
