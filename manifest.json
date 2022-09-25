@@ -1,6 +1,6 @@
 {
     "name": "PWA Demo pro bakalářskou práci (vlisak)",
-    "short_name" : "PWA demos",
+    "short_name" : "PWA demo",
     "start_url": ".",
     "display": "standalone",
     "icons": [
