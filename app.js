@@ -525,7 +525,7 @@ noteForm.querySelector(".second-item").lastElementChild.onclick = function() {
 
 // Vložení poznámky do DOM
 function listNote(note, i) {
-  const template = document.getElementsByClassName("template")[0].getElementsByClassName("note")[0];
+  const template = document.querySelector("#notes .template").getElementsByClassName("note")[0];
   let newNoteDiv = template.cloneNode(true),
       textElement = newNoteDiv.getElementsByClassName("text")[0],
       priorityElement = newNoteDiv.getElementsByClassName("priority")[0],
