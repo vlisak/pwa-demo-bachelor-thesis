@@ -419,7 +419,6 @@ border-radius: 6px;
 
   width: 1.5rem;
   clip-path: polygon(21% 68%, 100% 0, 19% 100%, 0 46%);
-  background-color: green;
 }
 
 .task .text, .note .text {
