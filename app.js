@@ -554,7 +554,7 @@ function listNote(note, i) {
 function deleteNote(i) {
   let div = notesList.querySelector("[data-index='"+ i +"']");
   div.classList.add("slideaway");
-  div.addEventListener("transitionend",function(){
+  div.addEventListener("transitionend", function(){
     notes.splice(i, 1);
     saveNotes();
     updateList();
@@ -582,3 +582,22 @@ function saveNotes() {
   let notesSerialized = JSON.stringify(notes);
   localStorage.setItem("notes", notesSerialized);
 }
+
+// Asynchroní aktualizace listu
+
+function resolveAfter60Second() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('resolved');
+    }, 60000);
+  });
+}
+
+async function asyncCall() {
+  while (true) {
+    await resolveAfter60Second();
+    updateList();
+    console.log("List updated", new Date());
+  }
+}
+asyncCall();
