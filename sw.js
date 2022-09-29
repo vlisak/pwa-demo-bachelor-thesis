@@ -1,4 +1,4 @@
-const version = "staticv1-0-3";
+const version = "staticv1-0-4";
 
 self.addEventListener("install", e => {
   e.waitUntil(
