@@ -205,12 +205,12 @@ html {
   
     max-width: 100%;
   }
-  
+
 /*----------------------------------------------------------------------*/
 
 :root {
-  --trans-left:#84fab0;
-  --trans-right:#8fd3f4;
+  --trans-left:#84fab0; /* Levá část přechodu */
+  --trans-right:#8fd3f4; /* Pravá část přechodu */
   --background: #fff;
   --color: #222;
 }
