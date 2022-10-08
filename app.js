@@ -27,7 +27,7 @@ window.onload = function (){
        });
    }
 
-// "frontend"
+// Ovládání aplikace
 function preventDefault(e) {
   e = e || window.event;
   if (e.preventDefault) {
@@ -279,7 +279,7 @@ colorInputs.forEach((input, i) => {
 });
 
 
-// "backend"
+// Práce s daty aplikace a I/O
 let tasks = [];
 const taskForm = document.getElementById("tasks").getElementsByTagName("form")[0],
       tasksList = document.getElementById("tasks").getElementsByClassName("list")[0];
@@ -330,7 +330,7 @@ let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako me
     });
 
     return filteredDateField.join("");
-  }
+  } 
 };
 
 function Task(text, priority, date, done){
@@ -344,8 +344,8 @@ function Task(text, priority, date, done){
 
 function tasksAssFnc(){
   tasks.forEach(task => {
-  task.timeLeft = timeLeftFnc;
-});
+    task.timeLeft = timeLeftFnc;
+  });
 }
 
 // Vložení úkolu do DOM
