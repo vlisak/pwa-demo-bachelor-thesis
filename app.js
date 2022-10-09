@@ -574,7 +574,7 @@ function loadNotes() {
   if (ls.length === 0 || ls === null) {
     return;
   }
-  let notesDeserialized = JSON.parse(localStorage.getItem("notes"));
+  let notesDeserialized = JSON.parse(ls);
   notes = notesDeserialized;
 }
 
