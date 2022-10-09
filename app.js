@@ -602,5 +602,4 @@ setInterval(function () {
       timeElement.textContent = task.timeLeft();
     }
   });
-  console.log("List updated", new Date());
 }, 1000);
