@@ -583,21 +583,24 @@ function saveNotes() {
   localStorage.setItem("notes", notesSerialized);
 }
 
-// Asynchroní aktualizace listu
-
-function resolveAfter60Second() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve('resolved');
-    }, 60000);
+// Asynchroní aktualizace DOM listu s úkoly
+  
+setInterval(function () {
+  tasks.forEach(function (task) {
+    let taskDiv = tasksList.querySelector("[data-index='"+ tasks.indexOf(task) +"']"),
+        timeElement = taskDiv.getElementsByClassName("time")[0].getElementsByTagName("span")[0];
+        
+    if (task.timeLeft() === false) {
+      let timeElementParent = taskDiv.getElementsByClassName("time")[0];
+      timeElementParent.innerHTML = "";
+      let outOfTimeText = document.createTextNode("Úkol již měl být splněn!");
+      let outOfTimeEl = document.createElement("span");
+  
+      outOfTimeEl.appendChild(outOfTimeText);
+      timeElementParent.appendChild(outOfTimeEl);
+    } else {
+      timeElement.textContent = task.timeLeft();
+    }
   });
-}
-
-async function asyncCall() {
-  while (true) {
-    await resolveAfter60Second();
-    updateList();
-    console.log("List updated", new Date());
-  }
-}
-asyncCall();
+  console.log("List updated", new Date());
+}, 1000);
