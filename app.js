@@ -1,4 +1,4 @@
-const appVersion = "1.0.5";
+const appVersion = "1.0.6";
 
 var appScript = document.querySelector('script[src="app.js"]');
 appScript.src = "app.js?v=" + appVersion;
@@ -286,16 +286,21 @@ const taskForm = document.getElementById("tasks").getElementsByTagName("form")[0
 
 // Třída pro úkol
 let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako metoda (Kvůli LS)
-  let currentDate, ms, minutes, hours, days, weeks, months;
+  let currentDate, ms, s, minutes, hours, days, weeks, months;
 
   currentDate = new Date();
   ms = this.date - currentDate;
 
-  if (ms < 60000) {
+  if (ms < 1000) {
     return false;
 
   } else {
-    minutes = ms / (1000 * 60);
+    s = ms / 1000;
+
+    if (s > 59) {
+      minutes = s / 60;
+      s = s % 60;
+    }
 
     if (minutes > 59) {
       hours = minutes / 60;
@@ -317,13 +322,14 @@ let timeLeftFnc = function(){ // Funkce, která se přiřadí k úkolům jako me
       days = days % 7;
     }
 
-    let dateField = [months, weeks, days, hours, minutes];
+    let dateField = [months, weeks, days, hours, minutes, s];
 
     dateField[0] = Math.floor(dateField[0]) + "m ";
     dateField[1] = Math.floor(dateField[1]) + "t ";
     dateField[2] = Math.floor(dateField[2]) + "d ";
     dateField[3] = Math.floor(dateField[3]) + "h ";
-    dateField[4] = Math.floor(dateField[4]) + "m";
+    dateField[4] = Math.floor(dateField[4]) + "m ";
+    dateField[5] = Math.floor(dateField[5]) + "s";
 
     filteredDateField = dateField.filter(function(str) {
       return(str.substring(0,3) !== "NaN" && str.substring(0,1) !== "0");
