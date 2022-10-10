@@ -513,6 +513,8 @@ border-radius: 6px;
 .completion-date input {
 
   width: 2rem;
+  height: 2rem;
+  align-self: center;
   text-align: center;
 }
 
