@@ -59,8 +59,10 @@
     <div class="page" id="tasks">
       <section class="entry">
         <form autocomplete="off">
-          <label hidden for="taskText">Text úkolu</label>
-          <input type="text" id="taskText">
+          <div class="text-input">
+            <input type="text" id="taskText">
+            <label for="taskText">Text úkolu</label>
+          </div>
           <div class="second-item">
             <button type="button" id="fulfillSetButton">Čas dokončení</button>
             <div class="dropdown-wrap">
@@ -135,7 +137,10 @@
     <div class="page" id="notes">
       <section class="entry">
         <form autocomplete="off">
-          <input type="text" id="noteText">
+          <div class="text-input">
+            <input type="text" id="noteText">
+            <label for="noteText">Text poznámky</label>
+          </div>
           <div class="second-item">
             <div class="dropdown-wrap">
               <button class="btn dropdown" type="button">Priorita</button>

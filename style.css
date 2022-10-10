@@ -293,11 +293,28 @@ form > div {
   display: flex;
 }
 
-form > input {
+form input {
 
   margin: 0.5rem;
   box-shadow: inset 0px 3px 9px -4px #000000;
   border-radius: 6px;
+}
+
+.text-input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+label {
+  position: absolute;
+  transform: translateX(1rem);
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.text-input > input:focus ~ label {
+  opacity: 0;
 }
 
 .second-item {
