@@ -531,7 +531,6 @@ border-radius: 6px;
   width: 192px;
   font-size: 80%;
   background: var(--background);
-  box-shadow: inset 0 0 7px 0px var(--color);
 }
 
 #set-datetime-inp::-webkit-calendar-picker-indicator {

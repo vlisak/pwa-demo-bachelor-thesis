@@ -172,4 +172,10 @@
     </div>
   </body>
   <script type="text/javascript" src="app.js"></script>
+  <!-- Fix pro iPhone -->
+  <script>
+    var now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    document.getElementById('set-datetime-inp').value = now.toISOString().slice(0,16);
+  </script>
 </html>
