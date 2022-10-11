@@ -311,9 +311,11 @@ label {
   transform: translateX(1rem);
   opacity: 0.5;
   transition: 0.3s;
+  pointer-events: none;
 }
 
-.text-input > input:focus ~ label {
+.text-input > input:focus ~ label,
+.text-input > input:not(:placeholder-shown) ~ label{
   opacity: 0;
 }
 

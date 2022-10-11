@@ -1,4 +1,4 @@
-const appVersion = "1.0.8";
+const appVersion = "1.0.9";
 
 var appScript = document.querySelector('script[src="app.js"]');
 appScript.src = "app.js?v=" + appVersion;
