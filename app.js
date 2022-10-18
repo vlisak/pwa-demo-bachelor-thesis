@@ -115,16 +115,16 @@ const themeButton = document.getElementsByName("theme")[0],
       prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
       if(themeStored === "true"){
-        themeButton.textContent = "Zapnutý"
+        themeButton.textContent = "Vypnout"
       } else if(themeStored === "false"){
-        themeButton.textContent = "Vypnutý"
+        themeButton.textContent = "Zapnout"
       } else if(themeStored === null){
         const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
         if (prefersDarkScheme.matches)
         {
-          themeButton.textContent = "Zapnutý"
+          themeButton.textContent = "Vypnout"
         } else {
-          themeButton.textContent = "Vypnutý"
+          themeButton.textContent = "Zapnout"
         }
       }
 
@@ -134,12 +134,12 @@ themeButton.addEventListener("click", function() {
     localStorage.setItem("theme", false);
     root.style.setProperty("--background","#fff");
     root.style.setProperty("--color","#000");
-    themeButton.textContent = "Vypnutý";
+    themeButton.textContent = "Zapnout";
   } else {
     localStorage.setItem("theme", true);
     root.style.setProperty("--background","#000");
     root.style.setProperty("--color","#fff");
-    themeButton.textContent = "Zapnutý";
+    themeButton.textContent = "Vypnout";
   }
 })
 
